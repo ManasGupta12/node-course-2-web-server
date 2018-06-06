@@ -1,6 +1,8 @@
 const exp=require('express');
 const hbs=require('hbs');
 const fs=require('fs');
+
+const port=process.env.PORT || 3000;
 var app=exp();
 
 hbs.registerPartials(__dirname +'/views');
@@ -17,9 +19,9 @@ app.use((req,res,next)=>{
     }); 
 	next();
 });
-app.use((req,res,next)=>{
-	res.render('maintanence.hbs');//maintance
-});
+//app.use((req,res,next)=>{
+//	res.render('maintanence.hbs');//maintance
+//});
 app.use(exp.static(__dirname +'/'));
 
 hbs.registerHelper('getCurrentYear',()=>{
@@ -46,6 +48,6 @@ app.get('/bad',(req,res)=>{
 errormess:'unable to handle it'
 	});
 })
-app.listen(3000,()=>{
-	console.log('server is on port no 3000');
+app.listen(port,()=>{
+	console.log(`server is on port no ${port}`);
 });
